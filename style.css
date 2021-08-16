@@ -22,7 +22,7 @@ canvas {
 }
 
 #container {
-    max-width: 50em;
+    max-width: 80em;
     height: 100%;
     background-color: lightblue;
     border-radius: 8px;
@@ -31,8 +31,8 @@ canvas {
     display: grid;
     grid-gap: 1em;
     grid-template-rows: .25fr, .5fr, .25fr;
-    grid-template-columns: .25fr, .5fr, .25fr;
-    grid-template-areas: "top-left top-left top-right" "game game game" "controls directions directions";
+    grid-template-columns: .5fr, .25fr, .5fr, .25fr, .5fr;
+    grid-template-areas: "left-side top-left top-left top-right right-side" "left-side game game game right-side" "left-side controls directions directions right-side";
 }
 
 #top-left,
@@ -47,8 +47,16 @@ canvas {
     grid-area: top-left;
 }
 
+#left-side {
+    grid-area: left-side;
+}
+
 #top-right {
     grid-area: top-right;
+}
+
+#right-side {
+    grid-area: right-side;
 }
 
 main {
