@@ -19,3 +19,9 @@
 // ====================== COLLISION DETECTION ======================= //
 
 // ====================== PAINT INTIAL SCREEN ======================= //
+
+
+
+// https://i.ibb.co/7XdTbXJ/water-swirl.gif - whirlpool gif
+// https://i.ibb.co/Qj4rQjD/rock.png - rock image
+// https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg - tuber image
