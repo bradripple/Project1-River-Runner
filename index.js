@@ -130,3 +130,91 @@ document.addEventListener('keydown', movementHandler);
 // https://i.ibb.co/7XdTbXJ/water-swirl.gif - whirlpool gif
 // https://i.ibb.co/Qj4rQjD/rock.png - rock image
 // https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg - tuber image
+
+
+
+// frequency in this case is how many frames pass between spawns
+
+
+function spawnRandomTriangles(frequency) {
+    // this just makes sure I never have a negative 
+    if (frequency < 1) {
+        frequency = 1;
+    } else {
+        // this makes sure frequency is integer, MODULO DOES NOT WORK WITH FRACTION 
+        frequency = Math.round(frequency);
+    }
+    // this if statement is MODULO, here it means a new triangle spawns every (frequency) # // of frames 
+    if (globalCount % frequency === 0) {
+
+        // this escape thing is to escape my while loop, technically optional
+        let escape = 0;
+
+        // creating a new triangle object 
+        // Relevant params: the first two are x and y, respectively
+        // X is always in the same place, slightly off screen
+        // Y is random! That way they don't all spawn on top of each other
+        // Math.random() returns a random number between 0 and 1, 
+        // 400 is the just under height of my canvas, so multiplying them together gives 
+        // a random value between 0 and 400
+        // And then I scoot it up by 20 so it's not on the edge  
+
+        const triangle = new Triangle(-25, Math.random() * 400 + 20, '#228B22', 21, 1);
+
+        // this is technically optional, this while loop is trying to prevent triangles
+        // from spawning too close to other triangles 
+
+        while (escape < 10) {
+            if (findClosest(triangle.x + 11, triangle.y + 9, arrTriangles, 'distance') > 29 || arrTriangles.length === 0) {
+                escape = 10;
+
+                // PUSH INTO THE ARRAY THIS IS ESSENTIAL. 
+                arrTriangles.push(triangle);
+            } else {
+                // this is the try again we spawned too close clause 
+                triangle.y = Math.random() * 400 + 20;
+                escape++;
+            }
+
+        }
+
+    }
+}
+5: 06
+    // this calls the render() method for every single object in the array, if you don't call the method
+    // for every single object then those objects won't render :D 
+arrTriangles.forEach(element => element.render());
+New
+5: 07
+
+function detectBulletHit(arr) {
+    // triangle collision. Right now they have square collision boxes but that's good enough for now.
+    // this is making sure the arrays aren't empty
+    if (arrProjectiles.length > 0 && arr.length > 0)
+    // this is going through each bullet instance in my bullet (projectiles) array
+        for (let i = 0; i < arrProjectiles.length; i++) {
+        // this is actually going through each triangle in my trianglearray
+        // triangle array in this case needs to be the param
+        for (let j = 0; j < arr.length; j++) {
+            // I'm just checking if the objects exist again
+            if (arrProjectiles[i] && arr[j].x) {
+                // this is collision detection. I suggests squares for collision, that's the easiest.
+                // make sure to draw a square
+                // don't try to check exact positions, needs to be a square
+                if (arrProjectiles[i].x < arr[j].x + arr[j].length && // makes sure bullet is to left of triangle edge
+                    arrProjectiles[i].x > arr[j].x && // makes sure bullet is to right of triangle edge
+                    arrProjectiles[i].y > arr[j].y - 18 && // makes sure bullet is below triangle edge
+                    arrProjectiles[i].y < arr[j].y + 2 // makes sure bullet is above triangle edge
+                ) {
+                    // I kill objects by splicing them out.
+                    arrProjectiles.splice(i, 1);
+                    arr.splice(j, 1);
+                    score += 1;
+                    money += 5;
+                    document.getElementById('score').innerText = 'Score: ' + score;
+                    document.getElementById('money').innerText = 'Money: ' + money;
+                }
+            }
+        }
+    }
+};

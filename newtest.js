@@ -33,7 +33,7 @@ class Obstacles {
     constructor(imageUrl, x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.speed = 2;
+        this.speed = 3;
         this.width = width;
         this.height = height;
         this.alive = true;
@@ -68,15 +68,28 @@ function movementHandler(e) {
             break;
     }
 }
+let arrRocks = [];
 
 function addNewObstacle() {
+
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
         rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", x, 0, 20, 20);
-        rock.render();
+        // rock.render(); 
+        arrRocks.push(rock);
+
     };
     return false;
 }
+
+
+function youLose() {
+    if (player.alive === false) {
+        let message = document.getElementById('directions');
+        message.textContent = "YOU LOSE! Press enter to try again.";
+    }
+}
+
 
 function gameLoop() {
     // clear the canvas
@@ -84,37 +97,50 @@ function gameLoop() {
     movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
 
     if (player.alive) {
-        rock.render();
-        detectHit(player, rock);
+        arrRocks.forEach(element => element.render());
+        detectHit(player, arrRocks);
+    } else {
+
     }
     // render hero here
     player.render();
 }
 
 function detectHit(p1, p2) {
-
-    let hitTest = (
-        p1.y + p1.height > p2.y &&
-        p1.y < p2.y + p2.height &&
-        p1.x + p1.width > p2.x &&
-        p1.x < p2.x + p2.width
-    ); // if all are true -> hit
-    if (hitTest) {
-        player.alive = false;
-        player.render();
-    } else {
-        return false;
+    for (let i = 0; i < p2.length; i++) {
+        let hitTest = (
+            p1.y + p1.height > p2[i].y &&
+            p1.y < p2[i].y + p2[i].height &&
+            p1.x + p1.width > p2[i].x &&
+            p1.x < p2[i].x + p2[i].width
+        ); // if all are true -> hit
+        if (hitTest) {
+            player.alive = false;
+            youLose();
+            console.log('We have a hit', youLose());
+        }
     }
+    return false;
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 10, 10);
+    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 15, 15);
     rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", 45, 0, 20, 20);
     rock.render();
     console.log('rock:', rock);
     player.render();
-    const runGame = setInterval(gameLoop, 120);
-    // setinterval at 3000 to add new obstacle
+
+    let message = document.getElementById('directions');
+    message.textContent = "Press any key to play";
+
+    let newGame = true;
+    document.addEventListener('keydown', (e) => {
+        if (newGame) {
+            message.textContent = "Grab all the beers!"
+            newGame = false;
+            const runGame = setInterval(gameLoop, 120);
+        }
+    });
     setInterval(() => {
         addNewObstacle();
     }, 1000);
@@ -122,3 +148,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
 });
 
 document.addEventListener('keydown', movementHandler);
+
+// https://i.ibb.co/pJnmLBz/Beer.jpg beer image

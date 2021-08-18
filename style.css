@@ -83,6 +83,9 @@ main {
 }
 
 #directions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     grid-area: directions;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;

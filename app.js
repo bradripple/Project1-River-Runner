@@ -6,13 +6,11 @@ let rock;
 let whirlPool;
 const ctx = game.getContext('2d');
 
-
 ctx.fillStyle = 'white';
 // Line Color
 ctx.strokeStyle = 'red';
 // Line Width
 ctx.lineWidth = 5;
-
 // ====================== SETUP FOR CANVAS RENDERING ======================= //
 // 2D rendering context for canvas element.
 // It is used for drawing shapes, text, images, and other objects.
@@ -40,7 +38,7 @@ class Obstacles {
     constructor(imageUrl, x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.speed = 2;
+        this.speed = 3;
         this.width = width;
         this.height = height;
         this.alive = true;
@@ -56,11 +54,16 @@ class Obstacles {
 
 // ====================== HELPER FUNCTIONS ======================= //
 
+let arrRocks = [];
+
 function addNewObstacle() {
+
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
         rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", x, 0, 20, 20);
-        rock.render();
+        // rock.render(); 
+        arrRocks.push(rock);
+
     };
     return false;
 }
@@ -95,39 +98,46 @@ function gameLoop() {
     movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
 
     if (player.alive) {
-        rock.render();
-        detectHit(player, rock);
+        arrRocks.forEach(element => element.render());
+        detectHit(player, arrRocks);
     }
     // render hero here
     player.render();
 }
 // ====================== COLLISION DETECTION ======================= //
-
 function detectHit(p1, p2) {
-
-    let hitTest = (
-        p1.y + p1.height > p2.y &&
-        p1.y < p2.y + p2.height &&
-        p1.x + p1.width > p2.x &&
-        p1.x < p2.x + p2.width
-    ); // if all are true -> hit
-    if (hitTest) {
-        player.alive = false;
-        player.render();
-    } else {
-        return false;
+    for (let i = 0; i < p2.length; i++) {
+        let hitTest = (
+            p1.y + p1.height > p2[i].y &&
+            p1.y < p2[i].y + p2[i].height &&
+            p1.x + p1.width > p2[i].x &&
+            p1.x < p2[i].x + p2[i].width
+        ); // if all are true -> hit
+        if (hitTest) {
+            player.alive = false;
+            console.log('We have a hit');
+        }
     }
+    return false;
 }
+
 
 // ====================== PAINT INTIAL SCREEN ======================= //
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 10, 10);
+    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 15, 15);
     rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", 45, 0, 20, 20);
     rock.render();
     console.log('rock:', rock);
     player.render();
-    const runGame = setInterval(gameLoop, 120);
+
+    let newGame = true;
+    document.addEventListener('keydown', (e) => {
+        if (newGame) {
+            newGame = false;
+            const runGame = setInterval(gameLoop, 120);
+        }
+    });
     // setinterval at 3000 to add new obstacle
     setInterval(() => {
         addNewObstacle();
