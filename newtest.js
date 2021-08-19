@@ -3,14 +3,36 @@ let game = document.getElementById('game');
 let pause = false;
 let player;
 let rock;
-let whirlPool;
+let bonk;
+bonk = new sound("bonk.mp3");
+let gulp;
+gulp = new sound("gulp.wav");
 const ctx = game.getContext('2d');
+let winner;
+winner = new sound("winner.mp3");
+let background;
+background = new sound("background.wav");
 
 ctx.fillStyle = 'white';
 // Line Color
 ctx.strokeStyle = 'red';
 // Line Width
 ctx.lineWidth = 5;
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function() {
+        this.sound.play();
+    }
+    this.stop = function() {
+        this.sound.pause();
+    }
+}
 
 class Tuber {
     constructor(imageUrl, x, y, width, height) {
@@ -75,7 +97,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("./img/rock.png", x, 0, 20, 20);
+        rock = new Obstacles("./img/rock.png", x, 0, 15, 15);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -110,6 +132,7 @@ function gameLoop() {
     movementDisplay.textContent = `🍺 x ${player.score}`;
 
     if (player.alive && pause === false) {
+        background.play();
         arrRocks.forEach(element => element.render());
         arrBeers.forEach(element => element.render());
         beerCollect(player, arrBeers);
@@ -138,7 +161,8 @@ function detectHit(p1, p2) {
         if (hitTest) {
             player.alive = false;
             youLose();
-            console.log('We have a hit', youLose());
+            background.stop();
+            bonk.play();
         }
     }
     return false;
@@ -156,6 +180,7 @@ function beerCollect(p1, p2) {
             player.score += 1;
             p2.splice(i, 1);
             i--;
+            gulp.play();
         } else if (hitTest && player.score === 5) {
             player.score += 1;
             p2.splice(i, 1);
@@ -165,6 +190,7 @@ function beerCollect(p1, p2) {
             win.style.visibility = "visible";
             let message = document.getElementById('directions');
             message.textContent = "WINNER! Press Enter to play again.";
+            winner.play();
 
             pause = true;
             console.log('you win!');
@@ -174,11 +200,12 @@ function beerCollect(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./img/hippo.png", 140, 140, 95, 95);
-    rock = new Obstacles("./img/rock.png", 45, 0, 20, 20);
+    player = new Tuber("./img/hippo.png", 140, 140, 35, 35);
+    rock = new Obstacles("./img/rock.png", 45, 0, 15, 15);
     beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
     rock.render();
     player.render();
+
 
     let message = document.getElementById('directions');
     message.textContent = "Press any key to play";
