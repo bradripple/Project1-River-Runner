@@ -18,6 +18,7 @@ class Tuber {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.score = 0;
         this.alive = true;
 
         this.image = new Image();
@@ -74,7 +75,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", x, 0, 20, 20);
+        rock = new Obstacles("./rock.png", x, 0, 20, 20);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -94,17 +95,23 @@ function youLose() {
 function gameLoop() {
     // clear the canvas
     ctx.clearRect(0, 0, game.width, game.height);
-    movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
+    movementDisplay.textContent = `🍺 x ${player.score}`;
 
     if (player.alive) {
         arrRocks.forEach(element => element.render());
         detectHit(player, arrRocks);
     } else {
-
+        document.addEventListener('keydown', function(event) {
+            if (event.which === 13) {
+                location.reload();
+            }
+        })
     }
     // render hero here
     player.render();
 }
+
+
 
 function detectHit(p1, p2) {
     for (let i = 0; i < p2.length; i++) {
@@ -124,8 +131,8 @@ function detectHit(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 15, 15);
-    rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", 45, 0, 20, 20);
+    player = new Tuber("./hippo.jpg", 140, 140, 25, 30);
+    rock = new Obstacles("./rock.png", 45, 0, 20, 20);
     rock.render();
     console.log('rock:', rock);
     player.render();
