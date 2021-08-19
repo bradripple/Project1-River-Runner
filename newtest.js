@@ -97,7 +97,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("./img/rock.png", x, 0, 15, 15);
+        rock = new Obstacles("./img/rock.png", x, 0, 25, 25);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -200,8 +200,8 @@ function beerCollect(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./img/hippo.png", 140, 140, 35, 35);
-    rock = new Obstacles("./img/rock.png", 45, 0, 15, 15);
+    player = new Tuber("./img/hippo.png", 140, 140, 25, 25);
+    rock = new Obstacles("./img/rock.png", 45, 0, 25, 25);
     beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
     rock.render();
     player.render();
@@ -216,14 +216,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
             message.textContent = "Grab all the beers!"
             newGame = false;
             const runGame = setInterval(gameLoop, 120);
+            setInterval(() => {
+                addNewObstacle();
+            }, 1000);
+            setInterval(() => {
+                addNewBeer();
+            }, 3000);
         }
     });
-    setInterval(() => {
-        addNewObstacle();
-    }, 1000);
-    setInterval(() => {
-        addNewBeer();
-    }, 3000);
 
 });
 
