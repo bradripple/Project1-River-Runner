@@ -1,5 +1,6 @@
 // GLOBAL DOM / VARIABLES
 let game = document.getElementById('game');
+let pause = false;
 let player;
 let rock;
 let whirlPool;
@@ -50,19 +51,19 @@ class Obstacles {
 function movementHandler(e) {
     // console.log('movement', e.key);
     switch (e.which) {
-        case 87:
+        case 38:
             // move hero up
             player.y - 10 >= 0 ? player.y -= 10 : null;
             break;
-        case 65:
+        case 37:
             player.x - 10 >= 0 ? player.x -= 10 : null;
             // move left
             break;
-        case 83:
+        case 40:
             player.y + 10 <= 140 ? player.y += 10 : null;
             //move down
             break;
-        case 68:
+        case 39:
             //move right
             player.x + 10 <= 290 ? player.x += 10 : null;
             break;
@@ -89,7 +90,6 @@ function addNewBeer() {
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
         beer = new Obstacles("./img/beer1.png", x, 0, 15, 15);
-        // rock.render(); 
         arrBeers.push(beer);
 
     };
@@ -109,7 +109,7 @@ function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
     movementDisplay.textContent = `🍺 x ${player.score}`;
 
-    if (player.alive) {
+    if (player.alive && pause === false) {
         arrRocks.forEach(element => element.render());
         arrBeers.forEach(element => element.render());
         beerCollect(player, arrBeers);
@@ -159,6 +159,9 @@ function beerCollect(p1, p2) {
         } else if (hitTest && player.score === 5) {
             player.score += 1;
             p2.splice(i, 1);
+            let message = document.getElementById('directions');
+            message.textContent = "WINNER!";
+            pause = true;
             console.log('you win!');
         }
     }
