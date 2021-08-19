@@ -159,8 +159,13 @@ function beerCollect(p1, p2) {
         } else if (hitTest && player.score === 5) {
             player.score += 1;
             p2.splice(i, 1);
+            let beer = document.getElementById('beer');
+            beer.style.visibility = "visible";
+            let win = document.getElementById('you-win');
+            win.style.visibility = "visible";
             let message = document.getElementById('directions');
-            message.textContent = "WINNER!";
+            message.textContent = "WINNER! Press Enter to play again.";
+
             pause = true;
             console.log('you win!');
         }
@@ -169,11 +174,10 @@ function beerCollect(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./img/raft.png", 140, 140, 10, 15);
+    player = new Tuber("./img/hippo.png", 140, 140, 95, 95);
     rock = new Obstacles("./img/rock.png", 45, 0, 20, 20);
     beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
     rock.render();
-    console.log('rock:', rock);
     player.render();
 
     let message = document.getElementById('directions');

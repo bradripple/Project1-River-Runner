@@ -21,6 +21,10 @@ h2 {
     /* background-color: grey; */
 }
 
+p {
+    font-size: 10px;
+}
+
 canvas {
     background-image: url("./img/water.gif");
     background-color: black;
@@ -76,6 +80,12 @@ main {
     grid-area: game;
 }
 
+#beer {
+    grid-area: game;
+    visibility: hidden;
+    z-index: 1;
+}
+
 #controls {
     grid-area: controls;
     background-color: rgba(240, 128, 128, .6);
@@ -89,6 +99,14 @@ main {
     grid-area: directions;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
+}
+
+#you-win {
+    grid-area: directions;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
 }
 
 #game {
