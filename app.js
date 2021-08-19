@@ -1,6 +1,5 @@
 // GLOBAL DOM / VARIABLES
 let game = document.getElementById('game');
-let tubeImg = "https://i.ibb.co/J7z0RcZ/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg";
 let player;
 let rock;
 let whirlPool;
@@ -60,7 +59,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", x, 0, 20, 20);
+        rock = new Obstacles("./rock.png", x, 0, 20, 20);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -115,7 +114,8 @@ function detectHit(p1, p2) {
         ); // if all are true -> hit
         if (hitTest) {
             player.alive = false;
-            console.log('We have a hit');
+            youLose();
+            console.log('We have a hit', youLose());
         }
     }
     return false;
@@ -125,15 +125,19 @@ function detectHit(p1, p2) {
 // ====================== PAINT INTIAL SCREEN ======================= //
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("https://i.ibb.co/YNFvKHc/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg", 140, 140, 15, 15);
-    rock = new Obstacles("https://i.ibb.co/Qj4rQjD/rock.png", 45, 0, 20, 20);
+    player = new Tuber("./raft.png", 140, 140, 15, 15);
+    rock = new Obstacles("./rock.png", 45, 0, 20, 20);
     rock.render();
     console.log('rock:', rock);
     player.render();
 
+    let message = document.getElementById('directions');
+    message.textContent = "Press any key to play";
+
     let newGame = true;
     document.addEventListener('keydown', (e) => {
         if (newGame) {
+            message.textContent = "Grab all the beers!"
             newGame = false;
             const runGame = setInterval(gameLoop, 120);
         }

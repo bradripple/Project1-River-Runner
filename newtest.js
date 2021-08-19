@@ -1,6 +1,5 @@
 // GLOBAL DOM / VARIABLES
 let game = document.getElementById('game');
-let tubeImg = "https://i.ibb.co/J7z0RcZ/Vector-illustration-of-a-floating-in-a-river-while-on-an-inner-tube.jpg";
 let player;
 let rock;
 let whirlPool;
@@ -75,7 +74,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("./rock.png", x, 0, 20, 20);
+        rock = new Obstacles("./img/rock.png", x, 0, 20, 20);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -83,6 +82,19 @@ function addNewObstacle() {
     return false;
 }
 
+let arrBeers = [];
+
+function addNewBeer() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        beer = new Obstacles("./img/beer1.png", x, 0, 15, 15);
+        // rock.render(); 
+        arrBeers.push(beer);
+
+    };
+    return false;
+}
 
 function youLose() {
     if (player.alive === false) {
@@ -99,6 +111,8 @@ function gameLoop() {
 
     if (player.alive) {
         arrRocks.forEach(element => element.render());
+        arrBeers.forEach(element => element.render());
+        beerCollect(player, arrBeers);
         detectHit(player, arrRocks);
     } else {
         document.addEventListener('keydown', function(event) {
@@ -130,9 +144,31 @@ function detectHit(p1, p2) {
     return false;
 }
 
+function beerCollect(p1, p2) {
+    for (let i = 0; i < p2.length; i++) {
+        let hitTest = (
+            p1.y + p1.height > p2[i].y &&
+            p1.y < p2[i].y + p2[i].height &&
+            p1.x + p1.width > p2[i].x &&
+            p1.x < p2[i].x + p2[i].width
+        ); // if all are true -> hit
+        if (hitTest && player.score < 5) {
+            player.score += 1;
+            p2.splice(i, 1);
+            i--;
+        } else if (hitTest && player.score === 5) {
+            player.score += 1;
+            p2.splice(i, 1);
+            console.log('you win!');
+        }
+    }
+    return false;
+}
+
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./hippo.jpg", 140, 140, 25, 30);
-    rock = new Obstacles("./rock.png", 45, 0, 20, 20);
+    player = new Tuber("./img/raft.png", 140, 140, 10, 15);
+    rock = new Obstacles("./img/rock.png", 45, 0, 20, 20);
+    beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
     rock.render();
     console.log('rock:', rock);
     player.render();
@@ -151,6 +187,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     setInterval(() => {
         addNewObstacle();
     }, 1000);
+    setInterval(() => {
+        addNewBeer();
+    }, 3000);
 
 });
 
