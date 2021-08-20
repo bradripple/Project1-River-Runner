@@ -98,7 +98,7 @@ function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("./img/rock.png", x, 0, 40, 40);
+        rock = new Obstacles("img/rock.png", x, 0, 40, 40);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -112,7 +112,7 @@ function addNewBeer() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        beer = new Obstacles("./img/beer1.png", x, 0, 25, 35);
+        beer = new Obstacles("img/beer1.png", x, 0, 25, 35);
         arrBeers.push(beer);
 
     };
@@ -205,9 +205,9 @@ function beerCollect(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./img/hippo.png", 280, 440, 45, 45);
-    rock = new Obstacles("./img/rock.png", 45, 0, 25, 25);
-    beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
+    player = new Tuber("img/hippo.png", 280, 440, 45, 45);
+    rock = new Obstacles("img/rock.png", 45, 0, 25, 25);
+    beer = new Obstacles("img/beer1.png", 45, 0, 15, 15);
     rock.render();
     player.render();
 
