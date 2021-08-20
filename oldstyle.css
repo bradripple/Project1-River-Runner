@@ -7,7 +7,7 @@ body {
 
 body {
     padding-top: 1em;
-    background-image: url("./img/shimmering-water.gif");
+    background-image: url("images/shimmering-water.gif");
     /* background: black; */
     background-size: cover;
     background-repeat: space;
@@ -38,7 +38,7 @@ p {
 }
 
 canvas {
-    background-image: url("./img/water.gif");
+    background-image: url("images/water.gif");
     background-color: black;
     min-width: 100%;
     max-height: 480px;
