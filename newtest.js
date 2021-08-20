@@ -44,7 +44,7 @@ class Tuber {
         this.alive = true;
 
         this.image = new Image();
-        this.image.src = imageUrl
+        this.image.src = imageUrl;
 
         this.render = function() {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
@@ -82,22 +82,23 @@ function movementHandler(e) {
             // move left
             break;
         case 40:
-            player.y + 10 <= 140 ? player.y += 10 : null;
+            player.y + 10 <= 450 ? player.y += 10 : null;
             //move down
             break;
         case 39:
             //move right
-            player.x + 10 <= 290 ? player.x += 10 : null;
+            player.x + 10 <= 570 ? player.x += 10 : null;
             break;
     }
 }
+
 let arrRocks = [];
 
 function addNewObstacle() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        rock = new Obstacles("./img/rock.png", x, 0, 25, 25);
+        rock = new Obstacles("./img/rock.png", x, 0, 40, 40);
         // rock.render(); 
         arrRocks.push(rock);
 
@@ -111,7 +112,7 @@ function addNewBeer() {
 
     if (player.alive) {
         let x = Math.floor(Math.random() * game.width) - 40;
-        beer = new Obstacles("./img/beer1.png", x, 0, 15, 15);
+        beer = new Obstacles("./img/beer1.png", x, 0, 25, 35);
         arrBeers.push(beer);
 
     };
@@ -125,11 +126,11 @@ function youLose() {
     }
 }
 
-
 function gameLoop() {
     // clear the canvas
     ctx.clearRect(0, 0, game.width, game.height);
     movementDisplay.textContent = `🍺 x ${player.score}`;
+    // movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
 
     if (player.alive && pause === false) {
         background.play();
@@ -148,8 +149,6 @@ function gameLoop() {
     player.render();
 }
 
-
-
 function detectHit(p1, p2) {
     for (let i = 0; i < p2.length; i++) {
         let hitTest = (
@@ -159,9 +158,9 @@ function detectHit(p1, p2) {
             p1.x < p2[i].x + p2[i].width
         ); // if all are true -> hit
         if (hitTest) {
+            background.stop();
             player.alive = false;
             youLose();
-            background.stop();
             bonk.play();
         }
     }
@@ -188,9 +187,15 @@ function beerCollect(p1, p2) {
             beer.style.visibility = "visible";
             let win = document.getElementById('you-win');
             win.style.visibility = "visible";
-            let message = document.getElementById('directions');
-            message.textContent = "WINNER! Press Enter to play again.";
+            let pour = document.getElementById('beerpour');
+            pour.style.visibility = "visible";
+            let pour1 = document.getElementById('beerpour1');
+            pour1.style.visibility = "visible";
+            let tryAgain = document.getElementById('controls');
+            tryAgain.style.padding = "60px 0px 0px 0px"
+            tryAgain.textContent = `Press Enter to play again`;
             winner.play();
+            background.stop();
 
             pause = true;
             console.log('you win!');
@@ -200,15 +205,14 @@ function beerCollect(p1, p2) {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./img/hippo.png", 140, 140, 25, 25);
+    player = new Tuber("./img/hippo.png", 280, 440, 45, 45);
     rock = new Obstacles("./img/rock.png", 45, 0, 25, 25);
     beer = new Obstacles("./img/beer1.png", 45, 0, 15, 15);
     rock.render();
     player.render();
 
-
     let message = document.getElementById('directions');
-    message.textContent = "Press any key to play";
+    // message.textContent = `Press any key to play \n Grab all the beers`;
 
     let newGame = true;
     document.addEventListener('keydown', (e) => {
