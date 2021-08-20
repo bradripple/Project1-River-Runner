@@ -125,8 +125,8 @@ function detectHit(p1, p2) {
 // ====================== PAINT INTIAL SCREEN ======================= //
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    player = new Tuber("./raft.png", 140, 140, 15, 15);
-    rock = new Obstacles("./rock.png", 45, 0, 20, 20);
+    player = new Tuber("./img/hippo.png", 140, 140, 15, 15);
+    rock = new Obstacles("./img/rock.png", 45, 0, 20, 20);
     rock.render();
     console.log('rock:', rock);
     player.render();
