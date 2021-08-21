@@ -187,8 +187,8 @@ function beerCollect(p1, p2) {
             p2.splice(i, 1);
             let beer = document.getElementById('beer');
             beer.style.visibility = "visible";
-            let hippo = document.getElementById('hippo');
-            hippo.style.visibility = "visible";
+            // let hippo = document.getElementById('hippo');
+            // hippo.style.visibility = "visible";
             let win = document.getElementById('you-win');
             win.style.visibility = "visible";
             let pour = document.getElementById('beerpour');
