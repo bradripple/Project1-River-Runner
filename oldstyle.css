@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 html,
 body {
     margin: 0;
@@ -17,8 +18,9 @@ body {
 
 h2 {
     color: white;
-    text-decoration: underline;
-    font-size: 35px;
+    font-family: 'Poiret One', cursive;
+    /* text-decoration: underline; */
+    font-size: 70px;
     /* background-color: grey; */
 }
 
@@ -80,10 +82,10 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 10px rgba(192, 192, 192, .4);
     max-height: 150px;
-    color: #fff;
-    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    color: #0fa;
+    text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    /* border: #39FF14 solid 8px; */
 }
 
 #top-left {
@@ -91,6 +93,7 @@ canvas {
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
     min-width: 648px;
+    /* box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa; */
 }
 
 #left-side {
@@ -105,6 +108,7 @@ canvas {
 #top-right {
     grid-area: top-right;
     background-color: rgba(240, 128, 128, .6);
+    box-shadow: 5px 10px rgba(192, 192, 192, .4);
     border-radius: 8px;
     min-width: 208px;
 }
