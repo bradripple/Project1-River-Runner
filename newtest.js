@@ -73,19 +73,19 @@ class Obstacles {
 function movementHandler(e) {
     // console.log('movement', e.key);
     switch (e.which) {
-        case 38:
+        case 87:
             // move hero up
             player.y - 10 >= 0 ? player.y -= 10 : null;
             break;
-        case 37:
+        case 65:
             player.x - 10 >= 0 ? player.x -= 10 : null;
             // move left
             break;
-        case 40:
+        case 83:
             player.y + 10 <= 450 ? player.y += 10 : null;
             //move down
             break;
-        case 39:
+        case 68:
             //move right
             player.x + 10 <= 570 ? player.x += 10 : null;
             break;
@@ -158,10 +158,10 @@ function detectHit(p1, p2) {
             p1.x < p2[i].x + p2[i].width
         ); // if all are true -> hit
         if (hitTest) {
-            background.stop();
+            bonk.play();
             player.alive = false;
             youLose();
-            bonk.play();
+            background.stop();
         }
     }
     return false;
@@ -176,10 +176,10 @@ function beerCollect(p1, p2) {
             p1.x < p2[i].x + p2[i].width
         ); // if all are true -> hit
         if (hitTest && player.score < 5) {
+            gulp.play();
             player.score += 1;
             p2.splice(i, 1);
             i--;
-            gulp.play();
         } else if (hitTest && player.score === 5) {
             player.score += 1;
             p2.splice(i, 1);
