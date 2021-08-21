@@ -208,8 +208,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     player = new Tuber("images/hippo.png", 280, 440, 45, 45);
     rock = new Obstacles("images/rock.png", 45, 0, 25, 25);
     beer = new Obstacles("images/beer1.png", 45, 0, 15, 15);
-    rock.render();
-    player.render();
+    // rock.render();
+    // player.render();
 
     let message = document.getElementById('directions');
     // message.textContent = `Press any key to play \n Grab all the beers`;
