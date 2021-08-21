@@ -12,6 +12,10 @@ let winner;
 winner = new sound("winner.mp3");
 let background;
 background = new sound("background.wav");
+let grunt;
+grunt = new sound("hippogrunt.wav");
+let grass;
+grass = new sound("grass.mp3");
 
 ctx.fillStyle = 'white';
 // Line Color
@@ -119,6 +123,32 @@ function addNewBeer() {
     return false;
 }
 
+let arrGrass = [];
+
+function addNewGrass() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        grass = new Obstacles("images/grass.png", x, 0, 75, 125);
+        arrGrass.push(grass);
+
+    };
+    return false;
+}
+
+let arrOtherHippo = [];
+
+function addNewOtherHippo() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        otherHippo = new Obstacles("images/otherhippo.png", x, 0, 55, 45);
+        arrOtherHippo.push(otherHippo);
+
+    };
+    return false;
+}
+
 function youLose() {
     if (player.alive === false) {
         let message = document.getElementById('directions');
@@ -165,6 +195,10 @@ function gameLoop() {
         background.play();
         arrRocks.forEach(element => element.render());
         arrBeers.forEach(element => element.render());
+        arrGrass.forEach(element => element.render());
+        arrOtherHippo.forEach(element => element.render());
+        detectOtherHippos(player, arrOtherHippo);
+        // detectGrass(player, arrGrass);
         beerCollect(player, arrBeers);
         detectHit(player, arrRocks);
     } else {
@@ -195,6 +229,34 @@ function detectHit(p1, p2) {
     }
     return false;
 }
+
+function detectOtherHippos(p1, p2) {
+    for (let i = 0; i < p2.length; i++) {
+        let hitTest = (
+            p1.y + p1.height > p2[i].y &&
+            p1.y < p2[i].y + p2[i].height &&
+            p1.x + p1.width > p2[i].x &&
+            p1.x < p2[i].x + p2[i].width
+        ); // if all are true -> hit
+        if (hitTest) {
+            grunt.play();
+        }
+    }
+}
+
+// function detectGrass(p1, p2) {
+//     for (let i = 0; i < p2.length; i++) {
+//         let hitTest = (
+//             p1.y + p1.height > p2[i].y &&
+//             p1.y < p2[i].y + p2[i].height &&
+//             p1.x + p1.width > p2[i].x &&
+//             p1.x < p2[i].x + p2[i].width
+//         ); // if all are true -> hit
+//         if (hitTest) {
+//             grass.play();
+//         }
+//     }
+// }
 
 function beerCollect(p1, p2) {
     for (let i = 0; i < p2.length; i++) {
@@ -241,6 +303,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
             setInterval(() => {
                 addNewBeer();
             }, 3000);
+            setInterval(() => {
+                addNewGrass();
+            }, 3000);
+            setInterval(() => {
+                addNewOtherHippo();
+            }, 5000);
         }
     });
 
