@@ -181,6 +181,7 @@ function beerCollect(p1, p2) {
             p2.splice(i, 1);
             i--;
         } else if (hitTest && player.score === 5) {
+            winner.play();
             player.score += 1;
             p2.splice(i, 1);
             let beer = document.getElementById('beer');
@@ -194,7 +195,6 @@ function beerCollect(p1, p2) {
             let tryAgain = document.getElementById('controls');
             tryAgain.style.padding = "60px 0px 0px 0px"
             tryAgain.textContent = `Press Enter`;
-            winner.play();
             background.stop();
 
             pause = true;
