@@ -127,11 +127,39 @@ function youLose() {
     }
 }
 
+function youWin() {
+    if (player.score >= 5) {
+        winner.play();
+        let beer = document.getElementById('beer');
+        beer.style.visibility = "visible";
+        let hippo = document.getElementById('hippo');
+        hippo.style.visibility = "visible";
+        let win = document.getElementById('you-win');
+        win.style.visibility = "visible";
+        let pour = document.getElementById('beerpour');
+        pour.style.visibility = "visible";
+        let pour1 = document.getElementById('beerpour1');
+        pour1.style.visibility = "visible";
+        let tryAgain = document.getElementById('controls');
+        tryAgain.style.padding = "40px 0px 0px 0px";
+        tryAgain.style.fontSize = "25px";
+        tryAgain.textContent = `Press Enter to play again`;
+        background.stop();
+        pause = true;
+    }
+}
+
 function gameLoop() {
     // clear the canvas
     ctx.clearRect(0, 0, game.width, game.height);
     movementDisplay.textContent = `🍺 x ${player.score}`;
     // movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
+    document.addEventListener('keydown', function(event) {
+        if (event.which === 27) {
+            player.score += 6;
+            youWin();
+        }
+    });
 
     if (player.alive && pause === false) {
         background.play();
@@ -182,24 +210,9 @@ function beerCollect(p1, p2) {
             p2.splice(i, 1);
             i--;
         } else if (hitTest && player.score === 5) {
-            winner.play();
             player.score += 1;
             p2.splice(i, 1);
-            let beer = document.getElementById('beer');
-            beer.style.visibility = "visible";
-            let win = document.getElementById('you-win');
-            win.style.visibility = "visible";
-            let pour = document.getElementById('beerpour');
-            pour.style.visibility = "visible";
-            let pour1 = document.getElementById('beerpour1');
-            pour1.style.visibility = "visible";
-            let tryAgain = document.getElementById('controls');
-            tryAgain.style.padding = "40px 0px 0px 0px";
-            tryAgain.style.fontSize = "25px";
-            tryAgain.textContent = `Press Enter to play again`;
-            background.stop();
-
-            pause = true;
+            youWin();
             console.log('you win!');
         }
     }
@@ -215,7 +228,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     let message = document.getElementById('directions');
     // message.textContent = `Press any key to play \n Grab all the beers`;
-
     let newGame = true;
     document.addEventListener('keydown', (e) => {
         if (newGame) {
