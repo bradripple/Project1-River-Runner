@@ -122,6 +122,7 @@ function addNewBeer() {
 function youLose() {
     if (player.alive === false) {
         let message = document.getElementById('directions');
+        message.style.fontSize = "35px"
         message.textContent = "YOU LOSE! Press enter to try again.";
     }
 }
@@ -186,6 +187,8 @@ function beerCollect(p1, p2) {
             p2.splice(i, 1);
             let beer = document.getElementById('beer');
             beer.style.visibility = "visible";
+            let hippo = document.getElementById('hippo');
+            hippo.style.visibility = "visible";
             let win = document.getElementById('you-win');
             win.style.visibility = "visible";
             let pour = document.getElementById('beerpour');
@@ -193,8 +196,9 @@ function beerCollect(p1, p2) {
             let pour1 = document.getElementById('beerpour1');
             pour1.style.visibility = "visible";
             let tryAgain = document.getElementById('controls');
-            tryAgain.style.padding = "60px 0px 0px 0px"
-            tryAgain.textContent = `Press Enter`;
+            tryAgain.style.padding = "40px 0px 0px 0px";
+            tryAgain.style.fontSize = "25px";
+            tryAgain.textContent = `Press Enter to play again`;
             background.stop();
 
             pause = true;
@@ -217,7 +221,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let newGame = true;
     document.addEventListener('keydown', (e) => {
         if (newGame) {
-            message.textContent = "Grab all the beers!"
+            message.style.fontSize = "45px";
+            message.textContent = "Grab all the beers!";
             newGame = false;
             const runGame = setInterval(gameLoop, 120);
             setInterval(() => {
