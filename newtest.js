@@ -193,7 +193,7 @@ function beerCollect(p1, p2) {
             pour1.style.visibility = "visible";
             let tryAgain = document.getElementById('controls');
             tryAgain.style.padding = "60px 0px 0px 0px"
-            tryAgain.textContent = `Press Enter to play again`;
+            tryAgain.textContent = `Press Enter`;
             winner.play();
             background.stop();
 
