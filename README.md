@@ -64,7 +64,7 @@ function youLose() {
 }
 ```
 The youWin function changes the visibility of different elements so they display when you win
-```
+```javascript
 function youWin() {
     if (player.score >= 5) {
         winner.play();
