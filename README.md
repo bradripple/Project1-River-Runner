@@ -46,6 +46,7 @@ I also used box-shadow and a groove style border with a .5 opacity to give dimen
     box-shadow: 5px 10px rgba(192, 192, 192, .4);
     min-width: 150px;
     max-width: 150px;
-}```
+}
+```
 
 ![](https://i.ibb.co/q5dDmYM/Thisrtyhippo.png)
