@@ -6,8 +6,10 @@ I pulled inspiration from 80's style driving games and modified it to be a flowi
 
 ## How to play
 
-* Click the link! --> https://bradripple.github.io/Project1-River-Runner/ to play
-* Or, fork and clone this repository and then open the index.html file in a browser
+* Click on the link here --> https://bradripple.github.io/Project1-River-Runner/
+* You can ⑂ Fork and Clone this repository to your local machine.
+* Open the `index.html` in your internet browser to play (I highly reccomend using Google Chrome).
+* Or you can use a Live Server plug-in.
 
 ## Instructions
 Movement
