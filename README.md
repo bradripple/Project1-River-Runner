@@ -1,6 +1,6 @@
-# Thristy Hippo
+# 🦛 Thristy Hippo 🦛
 
-You're a thirsty Hippo on a river rampage to drink your fill of beer.
+You're a thirsty 🦛 Hippo on a river rampage to drink your fill of beer.
 
 I pulled inspiration from 80's style driving games and modified it to be a flowing river
 
