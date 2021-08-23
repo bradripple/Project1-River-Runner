@@ -49,6 +49,5 @@ I also used box-shadow and a groove style border with opacity to give dimension 
     max-width: 150px;
 }
 ```
-
-![](https://i.ibb.co/q5dDmYM/Thisrtyhippo.png)
+![](https://imgur.com/D1d8JkI)
 
