@@ -51,4 +51,73 @@ I also used box-shadow and a groove style border with opacity to give dimension 
 }
 ```
 
+## Functionality
+
+I created seperate functions for when you win or lose.
+```
+function youLose() {
+    if (player.alive === false) {
+        let message = document.getElementById('directions');
+        message.style.fontSize = "35px"
+        message.textContent = "YOU LOSE! Press enter to try again.";
+    }
+}
+```
+The youWin function changes the visibility of different elements so they display when you win
+```
+function youWin() {
+    if (player.score >= 5) {
+        winner.play();
+        let beer = document.getElementById('beer');
+        beer.style.visibility = "visible";
+        let hippo = document.getElementById('hippo');
+        hippo.style.visibility = "visible";
+        let win = document.getElementById('you-win');
+        win.style.visibility = "visible";
+        let pour = document.getElementById('beerpour');
+        pour.style.visibility = "visible";
+        let pour1 = document.getElementById('beerpour1');
+        pour1.style.visibility = "visible";
+        let tryAgain = document.getElementById('controls');
+        tryAgain.style.padding = "40px 0px 0px 0px";
+        tryAgain.style.fontSize = "25px";
+        tryAgain.textContent = `Press Enter to play again`;
+        background.stop();
+        pause = true;
+    }
+}
+```
+
+To add sound I created this sound function, and established the different sounds as variables. Then I just had to use .play() to get the sounds to play where I needed 
+
+```
+let bonk;
+bonk = new sound("bonk.mp3");
+let gulp;
+gulp = new sound("gulp.wav");
+const ctx = game.getContext('2d');
+let winner;
+winner = new sound("winner.mp3");
+let background;
+background = new sound("background.wav");
+let grunt;
+grunt = new sound("hippogrunt.wav");
+let grass;
+grass = new sound("grass.mp3");
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function() {
+        this.sound.play();
+    }
+    this.stop = function() {
+        this.sound.pause();
+    }
+}
+```
 
