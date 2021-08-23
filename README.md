@@ -11,7 +11,7 @@ I pulled inspiration from 80's style driving games and modified it to be a flowi
 * Open the `index.html` in your internet browser to play (I highly reccomend using Google Chrome).
 * Or you can use a Live Server plug-in.
 
-## Instructions
+## How to play
 Movement
 * Any key to start
 * 'A' - left
