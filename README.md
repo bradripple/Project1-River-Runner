@@ -234,9 +234,9 @@ function gameLoop() {
 
     if (player.alive && pause === false) {
         background.play();
-        arrRocks.forEach(element => element.render());
-        arrBeers.forEach(element => element.render());
-        arrGrass.forEach(element => element.render());
+        arrRocks.forEach(element => element.render()); //<------
+        arrBeers.forEach(element => element.render()); //<------
+        arrGrass.forEach(element => element.render()); //<------
         arrOtherHippo.forEach(element => element.render());
         detectOtherHippos(player, arrOtherHippo);
         // detectGrass(player, arrGrass);
