@@ -219,7 +219,7 @@ function addNewOtherHippo() {
     return false;
 }
 ```
-Then, I render those arrays in the gameLoop
+Then, I render those arrays in the gameLoop using forEach()
 
 ```javascript
 function gameLoop() {
