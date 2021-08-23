@@ -219,6 +219,8 @@ function addNewOtherHippo() {
     return false;
 }
 ```
+![](https://i.ibb.co/QYpvDWs/thirstyhippo.png)
+
 Then, I render those arrays in the gameLoop using forEach()
 
 ```javascript
@@ -256,4 +258,4 @@ function gameLoop() {
 }
 ```
 
-![](https://i.ibb.co/QYpvDWs/thirstyhippo.png)
+
