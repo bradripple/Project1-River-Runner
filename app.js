@@ -14,14 +14,16 @@ let background;
 background = new sound("background.wav");
 let grunt;
 grunt = new sound("hippogrunt.wav");
-let grass;
-grass = new sound("grass.mp3");
+let swoosh;
+swoosh = new sound("grass.mp3");
 
 ctx.fillStyle = 'white';
 // Line Color
 ctx.strokeStyle = 'red';
 // Line Width
 ctx.lineWidth = 5;
+
+// ====================== ENTITIES ======================= //
 
 function sound(src) {
     this.sound = document.createElement("audio");
@@ -73,6 +75,8 @@ class Obstacles {
         }
     }
 }
+
+// ====================== HELPER FUNCTIONS ======================= //
 
 function movementHandler(e) {
     // console.log('movement', e.key);
@@ -149,6 +153,8 @@ function addNewOtherHippo() {
     return false;
 }
 
+// ====================== GAME PROCESSES ======================= //
+
 function youLose() {
     if (player.alive === false) {
         let message = document.getElementById('directions');
@@ -198,7 +204,7 @@ function gameLoop() {
         arrGrass.forEach(element => element.render());
         arrOtherHippo.forEach(element => element.render());
         detectOtherHippos(player, arrOtherHippo);
-        // detectGrass(player, arrGrass);
+        detectGrass(player, arrGrass);
         beerCollect(player, arrBeers);
         detectHit(player, arrRocks);
     } else {
@@ -211,6 +217,8 @@ function gameLoop() {
     // render hero here
     player.render();
 }
+
+// ====================== COLLISION DETECTION ======================= //
 
 function detectHit(p1, p2) {
     for (let i = 0; i < p2.length; i++) {
@@ -244,19 +252,20 @@ function detectOtherHippos(p1, p2) {
     }
 }
 
-// function detectGrass(p1, p2) {
-//     for (let i = 0; i < p2.length; i++) {
-//         let hitTest = (
-//             p1.y + p1.height > p2[i].y &&
-//             p1.y < p2[i].y + p2[i].height &&
-//             p1.x + p1.width > p2[i].x &&
-//             p1.x < p2[i].x + p2[i].width
-//         ); // if all are true -> hit
-//         if (hitTest) {
-//             grass.play();
-//         }
-//     }
-// }
+function detectGrass(p1, p2) {
+    for (let i = 0; i < p2.length; i++) {
+        let hitTest = (
+            p1.y + p1.height > p2[i].y &&
+            p1.y < p2[i].y + p2[i].height &&
+            p1.x + p1.width > p2[i].x &&
+            p1.x < p2[i].x + p2[i].width
+        ); // if all are true -> hit
+        if (hitTest) {
+            swoosh.play();
+            console.log(grass);
+        }
+    }
+}
 
 function beerCollect(p1, p2) {
     for (let i = 0; i < p2.length; i++) {
@@ -282,15 +291,14 @@ function beerCollect(p1, p2) {
     return false;
 }
 
+// ====================== PAINT INTIAL SCREEN ======================= //
+
 window.addEventListener('DOMContentLoaded', (e) => {
     player = new Tuber("images/hippo.png", 280, 440, 45, 45);
     rock = new Obstacles("images/rock.png", 45, 0, 25, 25);
     beer = new Obstacles("images/beer1.png", 45, 0, 15, 15);
-    // rock.render();
-    // player.render();
 
     let message = document.getElementById('directions');
-    // message.textContent = `Press any key to play \n Grab all the beers`;
     let newGame = true;
     document.addEventListener('keydown', (e) => {
         if (newGame) {
@@ -316,5 +324,3 @@ window.addEventListener('DOMContentLoaded', (e) => {
 });
 
 document.addEventListener('keydown', movementHandler);
-
-// https://i.ibb.co/pJnmLBz/Beer.jpg beer image
