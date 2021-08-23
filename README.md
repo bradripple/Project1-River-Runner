@@ -13,11 +13,11 @@ I pulled inspiration from 80's style driving games and modified it to be a flowi
 
 ## Instructions
 Movement
+* Any key to start
 * 'A' - left
 * 'S' - down
 * 'D' - right
 * 'W' - up
-* Any key to start
 * 'Enter' to try again
 
 
