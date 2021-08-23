@@ -122,4 +122,43 @@ function sound(src) {
     }
 }
 ```
+I created 2 different classes one for the player and one for all the obstacles. The obstacles have their this.y += this.speed to animate them.
+
+```javascript
+class Tuber {
+    constructor(imageUrl, x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.score = 0;
+        this.alive = true;
+
+        this.image = new Image();
+        this.image.src = imageUrl;
+
+        this.render = function() {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+        }
+    }
+}
+
+class Obstacles {
+    constructor(imageUrl, x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.speed = 3;
+        this.width = width;
+        this.height = height;
+        this.alive = true;
+
+        this.image = new Image();
+        this.image.src = imageUrl
+
+        this.render = function() {
+            ctx.drawImage(this.image, this.x, this.y += this.speed, this.width, this.height)
+        }
+    }
+}
+```
 
