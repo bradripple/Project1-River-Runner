@@ -7,8 +7,6 @@ I pulled inspiration from 80's style driving games and modified it to be a flowi
 * Click the link! https://bradripple.github.io/Project1-River-Runner/ to play
 * Or, fork and clone this repository and open the index.html file or use a Live Server plug-in
 
-![]
-
 # HOW TO PLAY
 Movement
 * 'A' - left
