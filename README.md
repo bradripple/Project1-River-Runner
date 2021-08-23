@@ -4,8 +4,6 @@ You're a thirsty 🦛 Hippo on a river rampage to drink your fill of beer 🍺.
 
 I pulled inspiration from 80's style driving games and modified it to be a flowing river
 
-![](https://i.ibb.co/QYpvDWs/thirstyhippo.png)
-
 ## How to play
 
 * Click on the link here --> https://bradripple.github.io/Project1-River-Runner/
@@ -257,3 +255,5 @@ function gameLoop() {
     player.render();
 }
 ```
+
+![](https://i.ibb.co/QYpvDWs/thirstyhippo.png)
