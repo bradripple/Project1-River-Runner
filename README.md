@@ -161,4 +161,95 @@ class Obstacles {
     }
 }
 ```
+To get the game to spawn mulitiply obstacles I created functions that generate random x coordinates and push those new instances of the obstacles class to an array
 
+```javascript
+let arrRocks = [];
+
+function addNewObstacle() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        rock = new Obstacles("images/rock.png", x, 0, 40, 40);
+        // rock.render(); 
+        arrRocks.push(rock);
+
+    };
+    return false;
+}
+
+let arrBeers = [];
+
+function addNewBeer() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        beer = new Obstacles("images/beer1.png", x, 0, 25, 35);
+        arrBeers.push(beer);
+
+    };
+    return false;
+}
+
+let arrGrass = [];
+
+function addNewGrass() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        grass = new Obstacles("images/grass.png", x, 0, 75, 125);
+        arrGrass.push(grass);
+
+    };
+    return false;
+}
+
+let arrOtherHippo = [];
+
+function addNewOtherHippo() {
+
+    if (player.alive) {
+        let x = Math.floor(Math.random() * game.width) - 40;
+        otherHippo = new Obstacles("images/otherhippo.png", x, 0, 55, 45);
+        arrOtherHippo.push(otherHippo);
+
+    };
+    return false;
+}
+```
+Then, I render those arrays in the gameLoop
+
+```javascript
+function gameLoop() {
+    // clear the canvas
+    ctx.clearRect(0, 0, game.width, game.height);
+    movementDisplay.textContent = `🍺 x ${player.score}`;
+    // movementDisplay.textContent = `X: ${player.x}\nY:${player.y}`;
+    document.addEventListener('keydown', function(event) {
+        if (event.which === 27) {
+            player.score += 6;
+            youWin();
+        }
+    });
+
+    if (player.alive && pause === false) {
+        background.play();
+        arrRocks.forEach(element => element.render());
+        arrBeers.forEach(element => element.render());
+        arrGrass.forEach(element => element.render());
+        arrOtherHippo.forEach(element => element.render());
+        detectOtherHippos(player, arrOtherHippo);
+        // detectGrass(player, arrGrass);
+        beerCollect(player, arrBeers);
+        detectHit(player, arrRocks);
+    } else {
+        document.addEventListener('keydown', function(event) {
+            if (event.which === 13) {
+                location.reload();
+            }
+        })
+    }
+    // render hero here
+    player.render();
+}
+```
