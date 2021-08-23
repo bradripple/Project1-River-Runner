@@ -9,8 +9,12 @@ Or, fork and clone this repository and open the index.html file or use a Live Se
 
 
 # HOW TO PLAY
-
-Using 'a' - left, 's' - down, 'd' - right, 'w' - up to navigate the thisrty Hippo down the river. The rocks will bonk you on the head knocking you out, so be sure to avoid them while collecting all the beers till you have had your fill. There is also river grass which may be hiding an rock or beer, so be careful when swimming through. And be sure to avoid other grumpy hippos on the river, they tend to get angry if you step on their toes.
+Movement
+* 'a' - left
+* 's' - down
+* 'd' - right
+* 'w' - up
+Navigate the thisrty Hippo down the river in search of beers. The rocks will bonk you on the head knocking you out, so be sure to avoid them while collecting all the beers till you have had your fill. There is also river grass which may be hiding an rock or beer, so be careful when swimming through. And be sure to avoid other grumpy hippos on the river, they tend to get angry if you step on their toes.
 
 Collect a full 6 pack to win. If you get bonked by a rock you lose.
 
