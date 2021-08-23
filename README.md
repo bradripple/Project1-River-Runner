@@ -31,7 +31,7 @@ Collect a full 6 pack to win. If you get bonked by a rock you lose.
 I used a multi-layered text shadow effect on the title to give it the look of a neon sign.
 
 
-```
+```css
 text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
 ```
 
@@ -40,7 +40,8 @@ text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px
 
 I also used box-shadow and a groove style border with opacity to give dimension to the game board elements
 
-```#left-side {
+```css
+#left-side {
     grid-area: left-side;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
@@ -54,7 +55,7 @@ I also used box-shadow and a groove style border with opacity to give dimension 
 ## Functionality
 
 I created seperate functions for when you win or lose.
-```
+```javascript
 function youLose() {
     if (player.alive === false) {
         let message = document.getElementById('directions');
@@ -91,7 +92,7 @@ function youWin() {
 
 To add sound I created this sound function, and established the different sounds as variables. Then I just had to use .play() to get the sounds to play where I needed 
 
-```
+```javascript
 let bonk;
 bonk = new sound("bonk.mp3");
 let gulp;
