@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 html,
 body {
     margin: 0;
@@ -7,24 +7,29 @@ body {
 
 body {
     padding-top: 1em;
-    background-image: url("./img/shimmering-water.gif");
+    background-image: url("images/shimmering-water.gif");
     /* background: black; */
     background-size: cover;
     background-repeat: space;
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Poiret One', cursive;
 }
 
 h2 {
     color: white;
-    text-decoration: underline;
-    font-size: 45px;
+    font-family: 'Poiret One', cursive;
+    /* text-decoration: underline; */
+    font-size: 70px;
     /* background-color: grey; */
+}
+
+h4 {
+    color: white;
+    text-decoration: underline;
 }
 
 h3 {
     color: white;
-    text-decoration: underline;
     font-size: 30px;
 }
 
@@ -33,23 +38,41 @@ p {
 }
 
 canvas {
-    background-image: url("./img/water.gif");
+    background-image: url("images/water.gif");
     background-color: black;
-    width: 100%;
-    height: 100;
+    min-width: 100%;
+    max-height: 480px;
+    border-radius: 8px;
+    box-shadow: 5px 10px rgba(192, 192, 192, .4);
 }
 
 #container {
     max-width: 80em;
-    max-height: 95em;
+    height: 100;
     background: transparent;
     margin: 0 auto;
     padding: 1em;
     display: grid;
     grid-gap: 1em;
     grid-template-rows: .25fr, .5fr, .25fr;
-    grid-template-columns: .25fr, .35fr, .15fr, .25fr;
-    grid-template-areas: "left-side top-left top-right right-side" "left-side game game right-side" "left-side controls directions right-side";
+    grid-template-columns: .25fr, .5fr, .5fr, .5fr, .25fr;
+    grid-template-areas: "left-side top-left top-left top-right right-side" "left-side game game game right-side" "left-side controls directions directions right-side";
+}
+
+#beerpour1 {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    visibility: hidden;
+}
+
+#beerpour {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    visibility: hidden;
 }
 
 #top-left,
@@ -57,53 +80,84 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    max-height: 150px;
+    color: #0fa;
+    text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    border: rgba(192, 192, 192, .5) groove 3px;
 }
 
 #top-left {
     grid-area: top-left;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
+    min-width: 648px;
+    /* box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa; */
 }
 
 #left-side {
     grid-area: left-side;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
+    border: rgba(192, 192, 192, .5) groove 3px;
     box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    min-width: 150px;
+    max-width: 150px;
 }
 
 #top-right {
     grid-area: top-right;
     background-color: rgba(240, 128, 128, .6);
+    box-shadow: 5px 10px rgba(192, 192, 192, .4);
     border-radius: 8px;
+    min-width: 208px;
 }
 
 #right-side {
     grid-area: right-side;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
+    border: rgba(192, 192, 192, .5) groove 3px;
     box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    min-width: 150px;
+    max-width: 150px;
 }
 
 main {
     grid-area: game;
-    max-width: 900px;
-    box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    display: flex;
+    flex-direction: column;
+    border: rgba(192, 192, 192, .5) groove 3px;
 }
 
 #beer {
     grid-area: game;
+    align-self: flex-start;
     visibility: hidden;
     z-index: 1;
 }
 
+#hippo {
+    grid-area: game;
+    align-self: flex-end;
+    visibility: hidden;
+    z-index: 2;
+}
+
 #controls {
     grid-area: controls;
-    color: white;
+    font-size: 15px;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
+    border: rgba(192, 192, 192, .5) groove 3px;
     box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    color: #fff;
+    /* text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa; */
+    max-height: 150px;
+    min-width: 241px;
+}
+
+#gameControls {
+    font-size: 15px;
 }
 
 #directions {
@@ -113,8 +167,14 @@ main {
     grid-area: directions;
     background-color: rgba(240, 128, 128, .6);
     border-radius: 8px;
-    color: white;
-    box-shadow: 5px 10px rgba(192, 192, 192, .6);
+    border: rgba(192, 192, 192, .5) groove 3px;
+    box-shadow: 5px 10px rgba(192, 192, 192, .4);
+    font-size: 20px;
+    color: #fff;
+    /* text-shadow: 0 0 7px #fff, 0 0 10px #0fa, 0 0 21px #0fa, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa; */
+    max-height: 150px;
+    max-width: 685px;
+    min-width: 685px;
 }
 
 #you-win {
@@ -123,6 +183,10 @@ main {
     align-items: center;
     justify-content: center;
     visibility: hidden;
+}
+
+#winnergif {
+    border-radius: 8px;
 }
 
 #game {
