@@ -37,7 +37,7 @@ I used a multi-layered text shadow effect on the title to give it the look of a 
 ![](https://i.ibb.co/FKZjzzW/title-screen-shot.png)
 
 
-I also used box-shadow and a groove style border with a .5 opacity to give dimension to the game board elements
+I also used box-shadow and a groove style border with opacity to give dimension to the game board elements
 
 ```#left-side {
     grid-area: left-side;
