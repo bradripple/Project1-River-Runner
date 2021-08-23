@@ -90,7 +90,7 @@ function youWin() {
     }
 }
 ```
-![](https://i.ibb.co/sWsVjS0/Screen-Shot-2021-08-23-at-10-31-01-AM.png)
+![](https://i.ibb.co/sPTB74Z/winnerscreen.png)
 
 To add sound I created this sound function, and established the different sounds as variables. Then I just had to use .play() to get the sounds to play where I needed 
 
