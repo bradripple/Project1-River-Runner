@@ -22,3 +22,8 @@ Navigate the thisrty Hippo down the river in search of beers. The rocks will bon
 
 Collect a full 6 pack to win. If you get bonked by a rock you lose.
 
+## Language
+* JavaScript
+* HTML 5
+* CSS
+
