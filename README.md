@@ -1,6 +1,3 @@
-Thristy Hippo
-SEI802 Project 1: Thirsty Hippo
-=======
 # 🦛 Thristy Hippo 🦛
 
 You're a thirsty 🦛 Hippo on a river rampage to drink your fill of beer 🍺.
